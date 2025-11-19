@@ -1,0 +1,24 @@
+<h1 class="mb-4 text-center">Restaurants</h1>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <% @restaurants.each do |restaurant| %>
+    <div class="col">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body">
+          <h5 class="card-title"><%= restaurant.name %></h5>
+          <p class="card-text">
+            <strong>Adresse:</strong> <%= restaurant.address %><br>
+            <strong>Téléphone:</strong> <%= restaurant.phone_number %>
+          </p>
+          <span class="badge bg-warning text-dark mb-2"><%= restaurant.category.capitalize %></span>
+          <div class="d-flex justify-content-between mt-3">
+            <%= link_to "Voir le restaurant", restaurant_path(restaurant), class: "btn btn-primary btn-sm" %>
+            <%= link_to "Ajouter une review", new_restaurant_review_path(restaurant), class: "btn btn-outline-success btn-sm" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="text-center mt-5">
+  <%= link_to "Ajouter un restaurant", new_restaurant_path, class: "btn btn-success btn-lg" %>
+</div>

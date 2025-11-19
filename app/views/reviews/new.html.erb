@@ -1,0 +1,15 @@
+<div class="card shadow-sm p-4 border-0">
+  <h1 class="mb-4">Ajouter une review pour <%= @restaurant.name %></h1>
+  <%= simple_form_for [@restaurant, @review] do |f| %>
+    <div class="mb-3">
+      <%= f.input :content, input_html: { class: "form-control", rows: 4 }, label: "Contenu" %>
+    </div>
+    <div class="mb-3">
+      <%= f.input :rating, as: :integer, input_html: { class: "form-control", min: 0, max: 5 }, label: "Note (0 à 5)" %>
+    </div>
+    <div class="d-flex gap-2">
+      <%= f.button :submit, "Envoyer la review", class: "btn btn-primary" %>
+      <%= link_to "Annuler", restaurant_path(@restaurant), class: "btn btn-outline-secondary" %>
+    </div>
+  <% end %>
+</div>

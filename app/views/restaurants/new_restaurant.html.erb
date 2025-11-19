@@ -1,0 +1,22 @@
+
+<div class="card shadow-sm p-4 border-0">
+  <h1 class="mb-4"><%= @restaurant.new_record? ? "Ajouter un restaurant" : "Modifier le restaurant" %></h1>
+  <%= simple_form_for @restaurant do |f| %>
+    <div class="mb-3">
+      <%= f.input :name, input_html: { class: "form-control" } %>
+    </div>
+    <div class="mb-3">
+      <%= f.input :address, input_html: { class: "form-control" } %>
+    </div>
+    <div class="mb-3">
+      <%= f.input :phone_number, input_html: { class: "form-control" } %>
+    </div>
+    <div class="mb-3">
+      <%= f.input :category, collection: Restaurant::CATEGORY, prompt: "Choisissez une catégorie", input_html: { class: "form-select" } %>
+    </div>
+    <div class="d-flex gap-2">
+      <%= f.button :submit, class: "btn btn-success" %>
+      <%= link_to "Annuler", restaurants_path, class: "btn btn-outline-secondary" %>
+    </div>
+  <% end %>
+</div>

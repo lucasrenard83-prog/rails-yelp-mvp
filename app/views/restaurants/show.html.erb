@@ -1,0 +1,38 @@
+<div class="card shadow-sm mb-4 border-0">
+  <div class="card-body">
+    <h1 class="card-title"><%= @restaurant.name %></h1>
+    <p class="card-text">
+      <strong>Adresse:</strong> <%= @restaurant.address %><br>
+      <strong>Téléphone:</strong> <%= @restaurant.phone_number %><br>
+      <strong>Catégorie:</strong>
+      <span class="badge bg-warning text-dark"><%= @restaurant.category.capitalize %></span>
+    </p>
+    <div class="mb-3">
+      <%= link_to "Ajouter une review", new_restaurant_review_path(@restaurant), class: "btn btn-primary me-2" %>
+      <%= link_to "Retour à la liste", restaurants_path, class: "btn btn-outline-secondary" %>
+    </div>
+  </div>
+</div>
+<h2 class="mb-3">Reviews</h2>
+<% if @restaurant.reviews.any? %>
+  <div class="list-group">
+    <% @restaurant.reviews.each do |review| %>
+      <div class="list-group-item list-group-item-action shadow-sm mb-2 rounded">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <% review.rating.times do %>
+              <i class="bi bi-star-fill text-warning"></i>
+            <% end %>
+            <% (5 - review.rating).times do %>
+              <i class="bi bi-star text-warning"></i>
+            <% end %>
+            <p class="mb-1"><%= review.content %></p>
+          </div>
+          <small class="text-muted"><%= review.created_at.strftime("%d/%m/%Y") %></small>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p class="text-muted">Aucune review pour ce restaurant.</p>
+<% end %>
